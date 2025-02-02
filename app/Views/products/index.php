@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vape Shop | Dashboard</title>
+    <title>Vape Shop - Products</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -86,7 +86,7 @@
             box-shadow: 0 0 15px #ff00ff;
         }
 
-        
+    
         .main-content {
             flex-grow: 1;
             padding: 40px;
@@ -123,6 +123,74 @@
             background: linear-gradient(45deg, #ff00ff, #0ff);
             transform: scale(1.05);
         }
+
+        
+        .container {
+            color: white;
+            margin-top: 30px;
+        }
+
+        .table {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .table th {
+            background-color: rgba(0, 255, 255, 0.3);
+            color: #0ff;
+        }
+
+        .table td {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .table img {
+            width: 50px;
+            border-radius: 5px;
+        }
+
+        .table tr:hover {
+            background-color: rgba(255, 0, 255, 0.2);
+        }
+
+        .table .no-image {
+            font-style: italic;
+            color: #ff00ff;
+        }
+
+        
+        .btn-edit, .btn-delete {
+            padding: 6px 12px;
+            font-size: 14px;
+            color: white;
+            background-color: #ff00ff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit:hover {
+            background-color: #0ff;
+        }
+
+        .btn-delete {
+            background-color: #ff4d4d;
+        }
+
+        .btn-delete:hover {
+            background-color: #ff1a1a;
+        }
+
     </style>
 </head>
 <body>
@@ -132,7 +200,7 @@
     </video>
 
     <div class="dashboard-container" style="display: flex; flex-grow: 1;">
-        
+
         <aside class="sidebar">
             <h2>Vape Dashboard</h2>
             <nav>
@@ -145,12 +213,48 @@
             </nav>
         </aside>
 
-        
+        <!-- Main Content -->
         <main class="main-content">
             <header>
-                <h1>Welcome, <?= esc($user['username']) ?>!</h1>
-                
+                <h1>Product List</h1>
+                <a href="<?= site_url('products/create') ?>" class="action-btn">Add Product</a>
             </header>
+
+            <div class="container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($products as $product): ?>
+                            <tr>
+                                <td><?= $product['id'] ?></td>
+                                <td>
+                                    <?php if ($product['image']): ?>
+                                        <img src="<?= base_url('uploads/' . $product['image']) ?>" alt="Product Image">
+                                    <?php else: ?>
+                                        <span class="no-image">No Image</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= $product['name'] ?></td>
+                                <td>₱<?= number_format($product['price'], 2) ?></td>
+                                <td><?= $product['stock_quantity'] ?></td>
+                                <td>
+                                    <a href="<?= site_url('products/edit/' . $product['id']) ?>" class="btn-edit">Edit</a>
+                                    <a href="<?= site_url('products/delete/' . $product['id']) ?>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </main>
     </div>
 </body>

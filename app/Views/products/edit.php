@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vape Shop | Dashboard</title>
+    <title>Edit Product</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         
         body {
@@ -104,7 +103,34 @@
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
         }
 
-        
+        /* Form Styling */
+        .form-group {
+            margin: 20px 0;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #222;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #ff00ff;
+            outline: none;
+        }
+
+    
         .action-btn {
             padding: 12px 20px;
             font-size: 16px;
@@ -123,10 +149,16 @@
             background: linear-gradient(45deg, #ff00ff, #0ff);
             transform: scale(1.05);
         }
+
+        .form-group img {
+            margin-top: 10px;
+            border-radius: 8px;
+            max-width: 100px;
+        }
     </style>
 </head>
 <body>
-    
+
     <video id="bg-video" autoplay muted loop>
         <source src="<?= base_url('assets/videos/vape_background.mp4') ?>" type="video/mp4">
     </video>
@@ -148,9 +180,34 @@
         
         <main class="main-content">
             <header>
-                <h1>Welcome, <?= esc($user['username']) ?>!</h1>
-                
+                <h1>Edit Product</h1>
             </header>
+            <form action="<?= site_url('products/update/' . $product['id']) ?>" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Product Name</label>
+                    <input type="text" id="name" name="name" value="<?= $product['name'] ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" id="price" name="price" value="<?= $product['price'] ?>" required step="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label for="stock_quantity">Stock Quantity</label>
+                    <input type="number" id="stock_quantity" name="stock_quantity" value="<?= $product['stock_quantity'] ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Product Image</label>
+                    <input type="file" id="image" name="image">
+                    <?php if ($product['image']): ?>
+                        <img src="<?= base_url('uploads/' . $product['image']) ?>" alt="Product Image" width="100">
+                    <?php endif; ?>
+                </div>
+
+                <button type="submit" class="action-btn">Update Product</button>
+            </form>
         </main>
     </div>
 </body>
