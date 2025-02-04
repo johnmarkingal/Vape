@@ -6,20 +6,178 @@
     <title>Vape Shop - Suppliers</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: white;
+            display: flex;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: blur(3px) brightness(0.5);
+        }
+
+        .sidebar {
+            width: 260px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transition: 0.3s ease;
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0ff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar nav ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar nav ul li a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            padding: 12px 18px;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .sidebar nav ul li a i {
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        .sidebar nav ul li a:hover {
+            background-color: #ff00ff;
+            color: #fff;
+            font-weight: bold;
+            box-shadow: 0 0 15px #ff00ff;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.5);
+            border-radius: 15px;
+            margin: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 28px;
+            color: #0ff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+        }
+
+        .action-btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #0ff, #ff00ff);
+            transition: 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            margin-top: 15px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .action-btn:hover {
+            background: linear-gradient(45deg, #ff00ff, #0ff);
+            transform: scale(1.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table, th, td {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: rgba(0, 255, 255, 0.3);
+            color: white;
+        }
+
+        .btn-edit, .btn-delete {
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-edit {
+            background-color: #0ff;
+            color: black;
+        }
+
+        .btn-delete {
+            background-color: #ff00ff;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+    <video id="bg-video" autoplay muted loop>
+        <source src="<?= base_url('assets/videos/vape_background.mp4') ?>" type="video/mp4">
+    </video>
+
     <div class="dashboard-container" style="display: flex; flex-grow: 1;">
         <aside class="sidebar">
             <h2>Vape Dashboard</h2>
             <nav>
                 <ul>
-                <li><a href="<?= site_url('dashboard/profile') ?>"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="<?= site_url('dashboard/profile') ?>"><i class="fas fa-user"></i> Profile</a></li>
                     <li><a href="<?= site_url('products') ?>"><i class="fas fa-box"></i> Products</a></li>
                     <li><a href="<?= site_url('suppliers') ?>"><i class="fas fa-truck"></i> Suppliers</a></li>
-                    <li><a href="<?= site_url('stock_in') ?>"><i class="fas fa-box"></i> Stock In</a></li>
-                    <li><a href="<?= site_url('sales') ?>"><i class="fas fa-box"></i> Sales</a></li>
-                    <li><a href="<?= site_url('sales-details') ?>"><i class="fas fa-box"></i> Sales Details</a></li>
-                    <li><a href="<?= site_url('inventory_logs') ?>"><i class="fas fa-box"></i> Inventory Logs</a></li>
                     <li><a href="<?= site_url('auth/logout') ?>"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </nav>
@@ -30,36 +188,33 @@
                 <h1>Supplier List</h1>
                 <a href="<?= site_url('suppliers/create') ?>" class="action-btn">Add Supplier</a>
             </header>
-
-            <div class="container">
-                <table class="table table-bordered">
-                    <thead>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Contact Person</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($suppliers as $supplier): ?>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Contact Person</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Actions</th>
+                            <td><?= $supplier['id'] ?></td>
+                            <td><?= $supplier['name'] ?></td>
+                            <td><?= $supplier['contact_person'] ?></td>
+                            <td><?= $supplier['phone'] ?></td>
+                            <td><?= $supplier['email'] ?></td>
+                            <td>
+                                <a href="<?= site_url('suppliers/edit/' . $supplier['id']) ?>" class="btn-edit">Edit</a>
+                                <a href="<?= site_url('suppliers/delete/' . $supplier['id']) ?>" class="btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($suppliers as $supplier): ?>
-                            <tr>
-                                <td><?= $supplier['id'] ?></td>
-                                <td><?= $supplier['name'] ?></td>
-                                <td><?= $supplier['contact_person'] ?></td>
-                                <td><?= $supplier['phone'] ?></td>
-                                <td><?= $supplier['email'] ?></td>
-                                <td>
-                                    <a href="<?= site_url('suppliers/edit/' . $supplier['id']) ?>" class="btn-edit">Edit</a>
-                                    <a href="<?= site_url('suppliers/delete/' . $supplier['id']) ?>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this supplier?')">Delete</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </main>
     </div>
 </body>
