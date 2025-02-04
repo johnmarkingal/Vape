@@ -35,3 +35,10 @@ $routes->post('/suppliers/store', 'SupplierController::store');
 $routes->get('/suppliers/edit/(:num)', 'SupplierController::edit/$1');
 $routes->post('/suppliers/update/(:num)', 'SupplierController::update/$1');
 $routes->get('/suppliers/delete/(:num)', 'SupplierController::delete/$1');
+
+$routes->get('stock_in', 'StockInController::index');
+$routes->get('stock_in/create', 'StockInController::create');
+$routes->post('stock_in/store', 'StockInController::store');
+$routes->get('stock_in/edit/(:num)', 'StockInController::edit/$1');  
+$routes->post('stock_in/update/(:num)', 'StockInController::update/$1');
+$routes->get('stock_in/delete/(:num)', 'StockInController::delete/$1');
