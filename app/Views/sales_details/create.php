@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vape Shop - Sales List</title>
+    <title>Add Sales Detail</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -100,7 +100,28 @@
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
         }
 
-        .action-btn {
+        .form-label {
+            font-size: 16px;
+            color: white;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid #0ff;
+            color: white;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #ff00ff;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #0ff, #ff00ff);
             padding: 12px 20px;
             font-size: 16px;
             font-weight: bold;
@@ -108,76 +129,18 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            background: linear-gradient(45deg, #0ff, #ff00ff);
             transition: 0.3s ease;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-            margin-top: 15px;
         }
 
-        .action-btn:hover {
+        .btn-success:hover {
             background: linear-gradient(45deg, #ff00ff, #0ff);
             transform: scale(1.05);
         }
-
-        .container {
-            color: white;
-            margin-top: 30px;
-        }
-
-        .table {
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        .table th, .table td {
-            padding: 12px;
-            text-align: center;
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .table th {
-            background-color: rgba(0, 255, 255, 0.3);
-            color: #0ff;
-        }
-
-        .table td {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .table tr:hover {
-            background-color: rgba(255, 0, 255, 0.2);
-        }
-
-        .btn-edit, .btn-delete {
-            padding: 6px 12px;
-            font-size: 14px;
-            color: white;
-            background-color: #ff00ff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-edit:hover {
-            background-color: #0ff;
-        }
-
-        .btn-delete {
-            background-color: #ff4d4d;
-        }
-
-        .btn-delete:hover {
-            background-color: #ff1a1a;
-        }
-
     </style>
 </head>
 <body>
-    
+
     <video id="bg-video" autoplay muted loop>
         <source src="<?= base_url('assets/videos/vape_background.mp4') ?>" type="video/mp4">
     </video>
@@ -202,36 +165,36 @@
         <!-- Main Content -->
         <main class="main-content">
             <header>
-                <h1>Sales List</h1>
-                <a href="<?= site_url('sales/create') ?>" class="action-btn">Add Sale</a>
+                <h1>Add New Sales Detail</h1>
             </header>
 
             <div class="container">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Total Amount</th>
-                            <th>Sale Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($sales as $sale): ?>
-                            <tr>
-                                <td><?= $sale['id'] ?></td>
-                                <td>₱<?= number_format($sale['total_amount'], 2) ?></td>
-                                <td><?= $sale['sale_date'] ?></td>
-                                <td>
-                                    <a href="<?= site_url('sales/edit/' . $sale['id']) ?>" class="btn-edit">Edit</a>
-                                    <a href="<?= site_url('sales/delete/' . $sale['id']) ?>" class="btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <form action="/sales-details/store" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Sale ID</label>
+                        <input type="number" name="sale_id" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Product ID</label>
+                        <input type="number" name="product_id" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Quantity</label>
+                        <input type="number" name="quantity" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Price</label>
+                        <input type="text" name="price" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Subtotal</label>
+                        <input type="text" name="subtotal" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn-success">Save Sales Detail</button>
+                </form>
             </div>
         </main>
     </div>
+
 </body>
 </html>
