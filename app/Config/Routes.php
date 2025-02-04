@@ -28,3 +28,10 @@ $routes->post('/products/store', 'ProductController::store');
 $routes->get('/products/edit/(:num)', 'ProductController::edit/$1');
 $routes->post('/products/update/(:num)', 'ProductController::update/$1');
 $routes->get('/products/delete/(:num)', 'ProductController::delete/$1');
+
+$routes->get('/suppliers', 'SupplierController::index');
+$routes->get('/suppliers/create', 'SupplierController::create');
+$routes->post('/suppliers/store', 'SupplierController::store');
+$routes->get('/suppliers/edit/(:num)', 'SupplierController::edit/$1');
+$routes->post('/suppliers/update/(:num)', 'SupplierController::update/$1');
+$routes->get('/suppliers/delete/(:num)', 'SupplierController::delete/$1');
