@@ -206,8 +206,7 @@
                                 <td><?= $log['action'] ?></td>
                                 <td><?= $log['quantity'] ?></td>
                                 <td><?= isset($log['date']) ? $log['date'] : 'N/A' ?></td> <!-- Safe check for 'date' -->
-                                <td>
-                                    <a href="<?= site_url('inventory_logs/view/' . $log['id']) ?>" class="btn-view">View</a>
+                                <td>                                    
                                     <a href="<?= site_url('inventory_logs/delete/' . $log['id']) ?>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this log?')">Delete</a>
                                 </td>
                             </tr>
