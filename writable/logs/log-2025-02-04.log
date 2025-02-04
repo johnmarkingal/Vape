@@ -15,3 +15,4 @@ in APPPATH\Views\dashboard\index.php on line 153.
 12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Vape\\public\\index.php')
 ERROR - 2025-02-04 14:26:11 --> No user found with username: john
 ERROR - 2025-02-04 14:26:16 --> No user found with username: john
+ERROR - 2025-02-04 14:53:24 --> No user found with username: john
