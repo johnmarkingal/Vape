@@ -16,3 +16,46 @@ in APPPATH\Views\dashboard\index.php on line 153.
 ERROR - 2025-02-04 14:26:11 --> No user found with username: john
 ERROR - 2025-02-04 14:26:16 --> No user found with username: john
 ERROR - 2025-02-04 14:53:24 --> No user found with username: john
+ERROR - 2025-02-04 16:44:28 --> No user found with username: john
+CRITICAL - 2025-02-04 16:44:33 --> ErrorException: Namespace declaration statement has to be the very first statement or after any declare call in the script
+[Method: GET, Route: sales]
+in APPPATH\Controllers\SaleController.php on line 15.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-02-04 16:45:46 --> ErrorException: Namespace declaration statement has to be the very first statement or after any declare call in the script
+[Method: GET, Route: sales]
+in APPPATH\Controllers\SaleController.php on line 4.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-02-04 16:46:46 --> ErrorException: Namespace declaration statement has to be the very first statement or after any declare call in the script
+[Method: GET, Route: sales]
+in APPPATH\Controllers\SaleController.php on line 4.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2025-02-04 16:47:57 --> ErrorException: Undefined variable $sale
+[Method: GET, Route: sales/create]
+in APPPATH\Views\sales\create.php on line 12.
+ 1 APPPATH\Views\sales\create.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $sale', 'C:\\laragon\\www\\Vape\\app\\Views\\sales\\create.php', 12)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\laragon\\www\\Vape\\app\\Views\\sales\\create.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('sales/create', [], true)
+ 5 APPPATH\Controllers\SaleController.php(35): view('sales/create')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SaleController->create()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SaleController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Vape\\public\\index.php')
+CRITICAL - 2025-02-04 16:48:15 --> ErrorException: Undefined variable $sales
+[Method: GET, Route: sales/create]
+in APPPATH\Views\sales\create.php on line 12.
+ 1 APPPATH\Views\sales\create.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $sales', 'C:\\laragon\\www\\Vape\\app\\Views\\sales\\create.php', 12)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\laragon\\www\\Vape\\app\\Views\\sales\\create.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('sales/create', [], true)
+ 5 APPPATH\Controllers\SaleController.php(35): view('sales/create')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SaleController->create()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SaleController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Vape\\public\\index.php')
