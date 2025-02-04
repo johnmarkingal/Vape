@@ -134,7 +134,7 @@
         <h2>Vape Dashboard</h2>
         <nav>
             <ul>
-            li><a href="<?= site_url('dashboard/profile') ?>"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="<?= site_url('dashboard/profile') ?>"><i class="fas fa-user"></i> Profile</a></li>
                     <li><a href="<?= site_url('products') ?>"><i class="fas fa-box"></i> Products</a></li>
                     <li><a href="<?= site_url('suppliers') ?>"><i class="fas fa-truck"></i> Suppliers</a></li>
                     <li><a href="<?= site_url('stock_in') ?>"><i class="fas fa-box"></i> Stock</a></li>
