@@ -159,3 +159,78 @@ in APPPATH\Views\sales_details\index.php on line 222.
 10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
 12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Vape\\public\\index.php')
+ERROR - 2025-02-04 20:37:57 --> mysqli_sql_exception: Table 'vape_sql.inventory_logs' doesn't exist in C:\laragon\www\Vape-1\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\laragon\www\Vape-1\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `invento...', 0)
+#1 C:\laragon\www\Vape-1\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `invento...')
+#2 C:\laragon\www\Vape-1\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `invento...')
+#3 C:\laragon\www\Vape-1\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `invento...', Array, false)
+#4 C:\laragon\www\Vape-1\app\Models\InventoryLogModel.php(20): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Vape-1\app\Controllers\InventoryLogController.php(28): App\Models\InventoryLogModel->findAll()
+#6 C:\laragon\www\Vape-1\system\CodeIgniter.php(933): App\Controllers\InventoryLogController->index()
+#7 C:\laragon\www\Vape-1\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryLogController))
+#8 C:\laragon\www\Vape-1\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\Vape-1\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\Vape-1\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\Vape-1\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\laragon\www\Vape-1\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#13 {main}
+CRITICAL - 2025-02-04 20:37:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'vape_sql.inventory_logs' doesn't exist
+[Method: GET, Route: inventory_logs]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `inventory_logs`.`id`, `products`.`name` as `product_name`, `inventory_logs`.`action`, `inventory_logs`.`quantity`, `inventory_logs`.`created_at` as `date`
+FROM `inventory_logs`
+JOIN `products` ON `products`.`id` = `inventory_logs`.`product_id`', [], false)
+ 2 APPPATH\Models\InventoryLogModel.php(20): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\InventoryLogController.php(28): App\Models\InventoryLogModel->findAll()
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryLogController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryLogController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Vape-1\\public\\index.php')
+CRITICAL - 2025-02-04 20:37:57 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'vape_sql.inventory_logs' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `inventory_logs`.`id`, `products`.`name` as `product_name`, `inventory_logs`.`action`, `inventory_logs`.`quantity`, `inventory_logs`.`created_at` as `date`
+FROM `inventory_logs`
+JOIN `products` ON `products`.`id` = `inventory_logs`.`product_id`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `inventory_logs`.`id`, `products`.`name` as `product_name`, `inventory_logs`.`action`, `inventory_logs`.`quantity`, `inventory_logs`.`created_at` as `date`
+FROM `inventory_logs`
+JOIN `products` ON `products`.`id` = `inventory_logs`.`product_id`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `inventory_logs`.`id`, `products`.`name` as `product_name`, `inventory_logs`.`action`, `inventory_logs`.`quantity`, `inventory_logs`.`created_at` as `date`
+FROM `inventory_logs`
+JOIN `products` ON `products`.`id` = `inventory_logs`.`product_id`', [], false)
+ 4 APPPATH\Models\InventoryLogModel.php(20): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\InventoryLogController.php(28): App\Models\InventoryLogModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryLogController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryLogController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Vape-1\\public\\index.php')
+CRITICAL - 2025-02-04 20:37:57 --> [Caused by] mysqli_sql_exception: Table 'vape_sql.inventory_logs' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `inventory_logs`.`id`, `products`.`name` as `product_name`, `inventory_logs`.`action`, `inventory_logs`.`quantity`, `inventory_logs`.`created_at` as `date`
+FROM `inventory_logs`
+JOIN `products` ON `products`.`id` = `inventory_logs`.`product_id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `inventory_logs`.`id`, `products`.`name` as `product_name`, `inventory_logs`.`action`, `inventory_logs`.`quantity`, `inventory_logs`.`created_at` as `date`
+FROM `inventory_logs`
+JOIN `products` ON `products`.`id` = `inventory_logs`.`product_id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `inventory_logs`.`id`, `products`.`name` as `product_name`, `inventory_logs`.`action`, `inventory_logs`.`quantity`, `inventory_logs`.`created_at` as `date`
+FROM `inventory_logs`
+JOIN `products` ON `products`.`id` = `inventory_logs`.`product_id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `inventory_logs`.`id`, `products`.`name` as `product_name`, `inventory_logs`.`action`, `inventory_logs`.`quantity`, `inventory_logs`.`created_at` as `date`
+FROM `inventory_logs`
+JOIN `products` ON `products`.`id` = `inventory_logs`.`product_id`', [], false)
+ 5 APPPATH\Models\InventoryLogModel.php(20): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\InventoryLogController.php(28): App\Models\InventoryLogModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\InventoryLogController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InventoryLogController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Vape-1\\public\\index.php')
+ERROR - 2025-02-04 20:56:10 --> No user found with username: john

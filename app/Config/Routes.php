@@ -64,7 +64,9 @@ $routes->get('/sales-details/edit/(:num)', 'SalesDetailsController::edit/$1');
 $routes->post('/sales-details/update/(:num)', 'SalesDetailsController::update/$1');
 $routes->get('/sales-details/delete/(:num)', 'SalesDetailsController::delete/$1');
 
-$routes->get('/inventory_logs', 'InventoryLogController::index');  
-$routes->get('/inventory_logs/create', 'InventoryLogController::create');  
-$routes->post('/inventory_logs/store', 'InventoryLogController::store'); 
-$routes->get('/inventory_logs/delete/(:num)', 'InventoryLogController::delete/$1');  
+$routes->get('inventory-dashboard', 'InventoryDashboardController::index');
+$routes->get('inventory-dashboard/view/(:num)', 'InventoryDashboardController::view/$1');
+$routes->match(['get', 'post'], 'inventory-dashboard/edit/(:num)', 'InventoryDashboardController::edit/$1');
+$routes->get('inventory-dashboard/delete/(:num)', 'InventoryDashboardController::delete/$1');
+
+$routes->get('inventory-dashboard', 'InventoryDashboardController::index');

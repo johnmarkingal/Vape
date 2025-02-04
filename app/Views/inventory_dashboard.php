@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Logs</title>
+    <title>Inventory Dashboard</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Your existing CSS design goes here */
+        /* Styling for the page */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -19,6 +19,7 @@
             overflow: hidden;
         }
 
+        /* Background Video */
         #bg-video {
             position: fixed;
             top: 0;
@@ -30,6 +31,7 @@
             filter: blur(3px) brightness(0.5);
         }
 
+        /* Sidebar Styles */
         .sidebar {
             width: 260px;
             background: rgba(0, 0, 0, 0.85);
@@ -84,6 +86,7 @@
             box-shadow: 0 0 15px #ff00ff;
         }
 
+        /* Main Content Styles */
         .main-content {
             flex-grow: 1;
             padding: 40px;
@@ -101,61 +104,51 @@
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
         }
 
-        .container {
-            color: white;
-            margin-top: 30px;
-        }
-
-        .table {
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        .table th, .table td {
-            padding: 12px;
+        .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    max-height: 500px; 
+    overflow-y: auto; 
+}
+        .product-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
             text-align: center;
-            color: #fff;
-            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .table th {
-            background-color: rgba(0, 255, 255, 0.3);
-            color: #0ff;
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
-        .table td {
-            background-color: rgba(255, 255, 255, 0.1);
+        .product-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
         }
 
-        .table tr:hover {
-            background-color: rgba(255, 0, 255, 0.2);
+        .product-price, .product-quantity {
+            font-size: 1em;
+            color: #555;
         }
 
-        .btn-view, .btn-delete {
-            padding: 6px 12px;
-            font-size: 14px;
-            color: white;
-            background-color: #ff00ff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        .product-description {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 10px;
         }
-
-        .btn-view:hover {
-            background-color: #0ff;
-        }
-
-        .btn-delete {
-            background-color: #ff4d4d;
-        }
-
-        .btn-delete:hover {
-            background-color: #ff1a1a;
-        }
-
     </style>
 </head>
 <body>
@@ -164,55 +157,40 @@
     </video>
 
     <div class="dashboard-container" style="display: flex; flex-grow: 1;">
+       
+        <!-- Sidebar -->
         <aside class="sidebar">
             <h2>Vape Dashboard</h2>
             <nav>
                 <ul>
-                <li><a href="<?= site_url('dashboard/profile') ?>"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="<?= site_url('dashboard/profile') ?>"><i class="fas fa-user"></i> Profile</a></li>
                     <li><a href="<?= site_url('products') ?>"><i class="fas fa-box"></i> Products</a></li>
                     <li><a href="<?= site_url('suppliers') ?>"><i class="fas fa-truck"></i> Suppliers</a></li>
-                    <li><a href="<?= site_url('stock_in') ?>"><i class="fas fa-box"></i> Stock In</a></li>
-                    <li><a href="<?= site_url('sales') ?>"><i class="fas fa-box"></i> Sales</a></li>
-                    <li><a href="<?= site_url('sales-details') ?>"><i class="fas fa-box"></i> Sales Details</a></li>
-                    <li><a href="<?= site_url('inventory_logs') ?>"><i class="fas fa-box"></i> Inventory Logs</a></li>
+                    <li><a href="<?= site_url('stock_in') ?>"><i class="fas fa-box"></i> Stock</a></li>
+                    <li><a href="<?= site_url('sales') ?>"><i class="fas fa-chart-line"></i> Sales</a></li>
+                    <li><a href="<?= site_url('sales-details') ?>"><i class="fas fa-chart-line"></i> Sales Details</a></li>
+                    <li><a href="<?= site_url('inventory-dashboard') ?>"><i class="fas fa-cogs"></i> Inventory Dashboard</a></li>
                     <li><a href="<?= site_url('auth/logout') ?>"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </nav>
         </aside>
 
+        <!-- Main Content -->
         <main class="main-content">
             <header>
-                <h1>Inventory Logs</h1>
-                <a href="<?= site_url('inventory_logs/create') ?>" class="action-btn">Add Log</a>
+                <h1>Inventory Dashboard</h1>
             </header>
 
-            <div class="container">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Product</th>
-                            <th>Action</th>
-                            <th>Quantity</th>
-                            <th>Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($inventoryLogs as $log): ?>
-                            <tr>
-                                <td><?= $log['id'] ?></td>
-                                <td><?= $log['product_name'] ?></td>
-                                <td><?= $log['action'] ?></td>
-                                <td><?= $log['quantity'] ?></td>
-                                <td><?= isset($log['date']) ? $log['date'] : 'N/A' ?></td> <!-- Safe check for 'date' -->
-                                <td>                                    
-                                    <a href="<?= site_url('inventory_logs/delete/' . $log['id']) ?>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this log?')">Delete</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+            <div class="product-grid">
+                <?php foreach ($inventory_items as $item): ?>
+                <div class="product-item">
+                    <img src="<?= base_url('uploads/' . esc($item['image'])); ?>" alt="<?= esc($item['name']); ?>" class="product-image">
+                    <h2 class="product-name"><?= esc($item['name']); ?></h2>
+                    <p class="product-price">Price: $<?= esc($item['price']); ?></p>
+                    <p class="product-quantity">Stock: <?= esc($item['stock_quantity']); ?></p>
+                    <p class="product-description"><?= esc($item['description']); ?></p>
+                </div>
+                <?php endforeach; ?>
             </div>
         </main>
     </div>
