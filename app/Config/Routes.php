@@ -49,3 +49,10 @@ $routes->post('/sales/store', 'SaleController::store');
 $routes->get('/sales/edit/(:segment)', 'SaleController::edit/$1');
 $routes->post('/sales/update/(:segment)', 'SaleController::update/$1');
 $routes->get('/sales/delete/(:segment)', 'SaleController::delete/$1');
+
+$routes->get('/sales', 'SaleController::index');
+$routes->get('/sales/create', 'SaleController::create');
+$routes->post('/sales/store', 'SaleController::store');
+$routes->get('/sales/edit/(:segment)', 'SaleController::edit/$1');
+$routes->post('/sales/update/(:segment)', 'SaleController::update/$1');
+$routes->get('/sales/delete/(:segment)', 'SaleController::delete/$1');
