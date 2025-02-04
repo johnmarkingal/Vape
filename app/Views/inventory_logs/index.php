@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vape Shop | Dashboard</title>
+    <title>Inventory Logs</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        
+        /* Your existing CSS design goes here */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -19,7 +19,6 @@
             overflow: hidden;
         }
 
-        
         #bg-video {
             position: fixed;
             top: 0;
@@ -31,7 +30,6 @@
             filter: blur(3px) brightness(0.5);
         }
 
-        
         .sidebar {
             width: 260px;
             background: rgba(0, 0, 0, 0.85);
@@ -86,7 +84,6 @@
             box-shadow: 0 0 15px #ff00ff;
         }
 
-        
         .main-content {
             flex-grow: 1;
             padding: 40px;
@@ -104,35 +101,69 @@
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
         }
 
-        
-        .action-btn {
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
+        .container {
             color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            background: linear-gradient(45deg, #0ff, #ff00ff);
-            transition: 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-            margin-top: 15px;
+            margin-top: 30px;
         }
 
-        .action-btn:hover {
-            background: linear-gradient(45deg, #ff00ff, #0ff);
-            transform: scale(1.05);
+        .table {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
         }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .table th {
+            background-color: rgba(0, 255, 255, 0.3);
+            color: #0ff;
+        }
+
+        .table td {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .table tr:hover {
+            background-color: rgba(255, 0, 255, 0.2);
+        }
+
+        .btn-view, .btn-delete {
+            padding: 6px 12px;
+            font-size: 14px;
+            color: white;
+            background-color: #ff00ff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view:hover {
+            background-color: #0ff;
+        }
+
+        .btn-delete {
+            background-color: #ff4d4d;
+        }
+
+        .btn-delete:hover {
+            background-color: #ff1a1a;
+        }
+
     </style>
 </head>
 <body>
-    
     <video id="bg-video" autoplay muted loop>
         <source src="<?= base_url('assets/videos/vape_background.mp4') ?>" type="video/mp4">
     </video>
 
     <div class="dashboard-container" style="display: flex; flex-grow: 1;">
-        
         <aside class="sidebar">
             <h2>Vape Dashboard</h2>
             <nav>
@@ -140,21 +171,50 @@
                 <li><a href="<?= site_url('dashboard/profile') ?>"><i class="fas fa-user"></i> Profile</a></li>
                     <li><a href="<?= site_url('products') ?>"><i class="fas fa-box"></i> Products</a></li>
                     <li><a href="<?= site_url('suppliers') ?>"><i class="fas fa-truck"></i> Suppliers</a></li>
-                    <li><a href="<?= site_url('stock_in') ?>"><i class="fas fa-box"></i> Stock</a></li>
-                    <li><a href="<?= site_url('sales') ?>"><i class="fas fa-chart-line"></i> Sales</a></li>
-                    <li><a href="<?= site_url('sales-details') ?>"><i class="fas fa-chart-line"></i> Sales Details</a></li>
+                    <li><a href="<?= site_url('stock_in') ?>"><i class="fas fa-box"></i> Stock In</a></li>
+                    <li><a href="<?= site_url('sales') ?>"><i class="fas fa-box"></i> Sales</a></li>
+                    <li><a href="<?= site_url('sales-details') ?>"><i class="fas fa-box"></i> Sales Details</a></li>
                     <li><a href="<?= site_url('inventory_logs') ?>"><i class="fas fa-box"></i> Inventory Logs</a></li>
                     <li><a href="<?= site_url('auth/logout') ?>"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                 </ul>
             </nav>
         </aside>
 
-        
         <main class="main-content">
             <header>
-                <h1>Welcome, <?= esc($user['username']) ?>!</h1>
-                
+                <h1>Inventory Logs</h1>
+                <a href="<?= site_url('inventory_logs/create') ?>" class="action-btn">Add Log</a>
             </header>
+
+            <div class="container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Action</th>
+                            <th>Quantity</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($inventoryLogs as $log): ?>
+                            <tr>
+                                <td><?= $log['id'] ?></td>
+                                <td><?= $log['product_name'] ?></td>
+                                <td><?= $log['action'] ?></td>
+                                <td><?= $log['quantity'] ?></td>
+                                <td><?= isset($log['date']) ? $log['date'] : 'N/A' ?></td> <!-- Safe check for 'date' -->
+                                <td>
+                                    <a href="<?= site_url('inventory_logs/view/' . $log['id']) ?>" class="btn-view">View</a>
+                                    <a href="<?= site_url('inventory_logs/delete/' . $log['id']) ?>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this log?')">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </main>
     </div>
 </body>
