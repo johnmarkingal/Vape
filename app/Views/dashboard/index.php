@@ -120,47 +120,6 @@
             background: linear-gradient(45deg, #ff00ff, #0ff);
             transform: scale(1.05);
         }
-
-        .dashboard-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            padding: 20px;
-            border-radius: 15px;
-            color: white;
-            text-align: left;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        .stat-card:hover {
-            transform: scale(1.05);
-        }
-
-        .bg-pink { background: linear-gradient(to right, #ec4899, #f97316); }
-        .bg-blue { background: linear-gradient(to right, #3b82f6, #4f46e5); }
-        .bg-teal { background: linear-gradient(to right, #14b8a6, #10b981); }
-
-        .chart-container {
-            margin-top: 30px;
-            padding: 30px;
-            border-radius: 15px;
-            background-color: white;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-            width: 90%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        canvas {
-            width: 100% !important;
-            height: 350px !important;
-        }
     </style>
 </head>
 <body>
@@ -193,95 +152,8 @@
             <header>
                 <h1>Welcome, <?= esc($user['username']) ?>!</h1>
             </header>
-
-            <!-- Dashboard Stats -->
-            <div class="dashboard-stats">
-                <div class="stat-card bg-pink">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-lg font-semibold">Weekly Sales</h2>
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="mt-4 text-3xl font-bold">$ 15,0000</div>
-                    <div class="mt-2">Increased by 60%</div>
-                </div>
-                <div class="stat-card bg-blue">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-lg font-semibold">Weekly Orders</h2>
-                        <i class="fas fa-bookmark"></i>
-                    </div>
-                    <div class="mt-4 text-3xl font-bold">45,6334</div>
-                    <div class="mt-2">Decreased by 10%</div>
-                </div>
-                <div class="stat-card bg-teal">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-lg font-semibold">Visitors Online</h2>
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <div class="mt-4 text-3xl font-bold">95,5741</div>
-                    <div class="mt-2">Increased by 5%</div>
-                </div>
-            </div>
-
-            <!-- Bar Chart Container -->
-            <div class="chart-container">
-                <canvas id="barChart"></canvas>
-            </div>
         </main>
     </div>
 
-    <script>
-        const ctx = document.getElementById('barChart').getContext('2d');
-        const barChart = new Chart(ctx, {
-            type: 'bar', // Change from 'line' to 'bar'
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'Sales',
-                    data: [15000, 20000, 18000, 22000, 25000, 23000, 26000],
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)', // Semi-transparent for a 3D effect
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1,
-                    hoverBackgroundColor: 'rgba(75, 192, 192, 0.8)', // On hover effect
-                    hoverBorderColor: 'rgba(75, 192, 192, 1)',
-                    borderRadius: 5, // Rounded bars
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: {
-                    duration: 1000, // Duration of the animation in ms
-                    easing: 'easeOutBounce', // Bounce effect on animation
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        ticks: { color: '#fff' }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        ticks: { color: '#fff' }
-                    }
-                },
-                plugins: {
-                    tooltip: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.7)', // Darker tooltip
-                        titleColor: '#fff',
-                        bodyColor: '#fff'
-                    }
-                },
-                elements: {
-                    bar: {
-                        borderWidth: 2,
-                        borderColor: 'rgba(0, 0, 0, 0.2)', // Subtle border effect for depth
-                        shadowOffsetX: 5, // Horizontal shadow offset
-                        shadowOffsetY: 5, // Vertical shadow offset
-                        shadowColor: 'rgba(0, 0, 0, 0.3)', // Shadow color
-                        shadowBlur: 10, // Shadow blur
-                    }
-                }
-            }
-        });
-    </script>
 </body>
 </html>

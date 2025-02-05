@@ -101,6 +101,8 @@ public function updateProfile()
         return redirect()->back();
     }
 }
+  
+
 
 
 }

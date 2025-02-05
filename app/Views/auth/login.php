@@ -6,7 +6,16 @@
     <title>Vape Shop | Login</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <style>
-        /* Background video styling */
+        /* Global Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Background Video Styling */
         #bg-video {
             position: fixed;
             top: 0;
@@ -15,35 +24,30 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            filter: blur(3px) brightness(0.5);
+            filter: blur(5px) brightness(0.5);
         }
 
-        /* Main Container */
+        /* Main Login Container */
         .login-container {
             position: relative;
             max-width: 420px;
-            margin: 100px auto;
+            margin: 10% auto;
             padding: 30px;
             background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-            backdrop-filter: blur(15px);
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
             text-align: center;
             color: #fff;
             transition: 0.3s ease;
         }
 
-        .login-container:hover {
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
-        }
-
-        /* Title */
         .login-container h2 {
-            font-size: 2em;
+            font-size: 2.5em;
             font-weight: bold;
-            margin-bottom: 20px;
             color: #0ff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            margin-bottom: 30px;
         }
 
         /* Alert Box */
@@ -53,33 +57,31 @@
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 15px;
-            text-align: center;
             font-size: 0.9em;
             box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
         /* Form Styling */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
         .form-group label {
-            display: block;
             font-weight: bold;
-            font-size: 0.9em;
+            font-size: 1em;
             color: #0ff;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             border: 2px solid rgba(0, 255, 255, 0.5);
-            border-radius: 8px;
+            border-radius: 10px;
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
-            font-size: 1em;
+            font-size: 1.1em;
             outline: none;
             transition: 0.3s ease;
         }
@@ -92,15 +94,15 @@
         /* Button Styling */
         button[type="submit"] {
             width: 100%;
-            padding: 12px;
-            font-size: 1em;
+            padding: 15px;
+            font-size: 1.1em;
             color: #fff;
             background: linear-gradient(45deg, #0ff, #ff00ff);
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
         }
 
         button[type="submit"]:hover {
@@ -110,16 +112,33 @@
 
         /* Switch Between Forms */
         .switch-form {
-            font-size: 0.9em;
-            margin-top: 15px;
+            font-size: 1em;
+            margin-top: 20px;
             color: #0ff;
             cursor: pointer;
             text-decoration: underline;
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
         .switch-form:hover {
             color: #ff00ff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .login-container {
+                max-width: 90%;
+                margin: 10% auto;
+            }
+
+            .login-container h2 {
+                font-size: 2em;
+            }
+
+            .form-group input, button[type="submit"] {
+                font-size: 1em;
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -177,6 +196,7 @@
         <p class="switch-form" onclick="switchForm('login')">Already have an account? Login here.</p>
     </div>
 
+    <!-- JavaScript to Switch Forms -->
     <script>
         function switchForm(formType) {
             if (formType === 'register') {
